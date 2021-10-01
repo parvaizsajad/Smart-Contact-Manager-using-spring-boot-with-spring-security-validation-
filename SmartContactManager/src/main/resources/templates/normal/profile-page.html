@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+  <head>
+
+    <title >hello from home</title>
+  </head>
+  <body>
+   <section>
+<div class="card col-md-8 offset-md-2 ">
+  <div class="card-body text-center" >
+   <table th:each="c: ${user}" class="table">
+ <div class="text-center">
+    <img style="height: 200px;width: 300px; border-radius: 70%;object-fit: cover;" th:src="@{'/img/'+${c.image}}" alt="" />
+    
+</div>
+    <tr>
+ 
+      <th scope="col">#ID</th>
+       <th scope="row" th:text="${c.id}">>1</th>
+    </tr>
+     <tr>
+ 
+      <th scope="col">Name</th>
+       <th scope="row" th:text="${c.name}">>1</th>
+    </tr>
+
+  <tr>
+ 
+    <th scope="col">Email</th>
+     <th scope="row" th:text="${c.email}">>1</th>
+   </tr>
+ 
+  <tr>
+ 
+    <th scope="col">About</th>
+     <th scope="row" th:text="${c.about}">>1</th>
+   </tr>
+   <tr>
+   <th scope="col">Role</th>
+     <th scope="row" th:text="${c.role}">>1</th>
+   </tr>
+   <tr>
+    <th scope="col">Active</th>
+     <th scope="row" th:text="${c.active}">>1</th>
+   </tr>
+
+</table>
+<div th:each="c: ${user}" class="d-grid gap-2 p-5">
+
+
+
+  <!--  <a th:onclick="|deleteContact(${c.id})|">  <button class="btn btn-danger" type="button">Delete</button> </a>
+     <form th:action="@{'/user/update-contact/'+${c.id}}" method="post">
+         <button class="btn btn-success">update</button> </form> -->
+ 
+</div>
+  </div>
+
+
+</div>
+
+	
+	</section>
+
+
+  </body>
+</html>

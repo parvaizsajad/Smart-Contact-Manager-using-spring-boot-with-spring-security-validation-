@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+  <head>
+
+    <title >hello from home</title>
+  </head>
+  <body>
+   <section>
+   <div class="card col-md-8 offset-md-2">
+   <div class="card-body">
+   <div class="container text-center">
+   <img th:src="@{/img/default.png}" alt="" style="width: 200px;height: 300px;border-radius: 50%;"/>
+   <h1>Welcome:   </h1>
+	<h1 th:text="${user.getName()}"></h1>
+	
+	<h1>Start Adding your contacts</h1>
+<div class="d-grid gap-2">
+  <a 
+  th:href="@{/user/add-contact}" class="btn btn-primary" type="button">Add Contacts</a>
+ 
+   
+   
+   
+   </div>
+   </div>
+   
+   </div>
+	
+	
+	</section>
+
+
+  </body>
+</html>

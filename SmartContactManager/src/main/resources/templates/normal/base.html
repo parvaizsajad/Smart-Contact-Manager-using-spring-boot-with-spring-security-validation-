@@ -1,0 +1,118 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+  <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title th:text="${title}">hello from base</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+  
+  <!--this is the starting of the nav bar  -->
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-uppercase" >Smart Contact Manager</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse ml-auto text-uppercase" id="navbarSupportedContent" >
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/user/dashboard}">Home</a>
+        </li>
+        
+       
+        <li class="nav-item">
+          <a class="nav-link " th:text="${user.getName()}"></a>
+        </li>
+            <li class="nav-item">
+          <a class="nav-link "th:href="@{/logout}">Logout</a>
+        </li>
+      
+          
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<!--   end of the nav bar -->
+<!-- Start of Side bar -->
+<!-- 9620 950 712 -->
+<div class="sidebar mt-1">
+<span onclick="toggleSidebar()" class="crossbtn">&times;</span>
+
+<a th:href="@{/user/dashboard}" href="" class="item"><i class="fas fa-home"></i> Home</a>
+	<a href="" th:href="@{/user/add-contact}" class="item"><i class="far fa-address-book"></i> Add Contact</a>
+	<a th:href="@{/user/show-contact/0}" class="item"><i class="far fa-address-card"></i> View Contact</a>
+	<a th:href="@{/user/profile}" class="item"><i class="fas fa-user-alt"></i> Your Profile</a>
+	<a href="" class="item"><i class="fas fa-user-cog"></i> Setting</a>
+	<a th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+	
+	<div class="divider">
+
+	</div>
+</div>
+
+<!-- end of Side bar -->
+
+<!-- start of alert -->
+
+	<!-- Start of content area -->
+	<div class="content mt-5">
+	<i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
+	<div th:replace="${content}">
+	
+	
+	</div>
+	
+	</div>
+	
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- end of content area -->
+<script>
+function deleteContact(id){
+	
+	swal({
+		  title: "Are you sure?",
+		  text: "do you want to delete your contact",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		   window.location="/user/delete/"+id;
+		  } else {
+		    swal("Your imaginary file is safe!");
+		  }
+		});
+}
+
+</script>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+  <head>
+
+    <title >hello from home</title>
+  </head>
+  <body>
+   <section>
+<div  th:if="${session.message}"
+								 th:classappend="${session.message.type}"
+								  class="alert alert-primary text-center"
+								   role="alert">
+ 							 <p th:text="${session.message.content}">
+								<p th:text="${#session.removeAttribute('message')}"></p>
+								</div>
+<div class="card">
+<div class="card-body">
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">PHONE</th>
+        <th scope="col">ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c: ${contact}">
+      <th scope="row" th:text="${c.id}">>1</th>
+      <td>
+        <img th:src="@{'/img/'+${c.image}}" alt=""  class="ImageP"/>
+              <span th:text="${c.name}">Otto</span>
+      </td>
+ 
+
+      <td th:text="${c.email}">@mdo</td>
+          <td th:text="${c.phone}">@mdo</td>
+          <td>
+          <a th:href="@{'/user/'+${c.id}+'/show-contact'}"> <button class="btn btn-success">View</button>   </a>
+        
+        
+       
+           </td>
+
+      
+    </tr>
+ 
+  </tbody>
+</table>
+</div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  <li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentPage-1}}" class="page-link">Previous</a>
+    
+    <li th:classappend="${currentPage==n-1? 'active':''}"  th:each="n : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{'/user/show-contact/'+${n-1}}" class="page-link" th:text="${n}" href="#">1</a></li>
+    
+
+    
+    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a th:href="@{'/user/show-contact/'+${currentPage+1}}" class="page-link" href="#">Next</a></li>
+    
+  </ul>
+</nav>
+	</section>	
+
+
+  </body>
+</html>

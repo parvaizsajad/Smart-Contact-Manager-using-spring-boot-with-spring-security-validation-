@@ -1,0 +1,111 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+  <head>
+
+    <title >hello from Add contact form</title>
+  </head>
+  <body>
+   <section>
+	
+<!-- 	Starting of the form -->
+
+<div class="card col-md-10 offset-md-1 p-3 ">
+		<div class="card-body">
+			<div class="formBox">
+				<form th:action="@{/user/process-contact}" method="post" enctype="multipart/form-data" th:object="${contact}">
+						
+						<div class="text-center"> <h1 class="text-blue">Contact Form</h1></div>
+								
+					
+								<div class="inputBox ">
+									<div class="inputText"></div>
+									<input type="text" name="name" 
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid' :''} "
+									class="input" placeholder="Name">
+									<div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="invalid-feedback">
+								</div>
+							</div>
+
+										<div class="inputBox">
+									<div class="inputText"></div>
+									<input type="text" name="nick_name" class="input" placeholder="Nick Name">
+								</div>
+						
+			
+
+						
+								<div class="inputBox">
+									<div class="inputText"></div>
+									<input type="email" name="email" 
+									th:classappend="${#fields.hasErrors('email') ? 'is-invalid' :''} "
+									class="input" placeholder="Email"  >
+									 <div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback">
+								</div>
+							</div>
+
+						
+								<div class="inputBox">
+									<div class="inputText"></div>
+									<input type="text" name="phone"
+									th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' :''} "
+									 class="input" placeholder="Phone" >
+									  <div th:each="e : ${#fields.errors('phone')}" th:text="${e}" class="invalid-feedback">
+								</div>
+						
+							
+								<div class="inputBox">
+									<div class="inputText"></div>
+									<input type="text" name="work" class="input" placeholder="Work"  >
+								</div>
+						
+							
+						</div>
+
+					
+								<div class="inputBox">
+									<div class="inputText"></div>
+									<textarea name="description" class="input" placeholder="Description" rows="10"></textarea>
+								</div>
+						
+
+<!-- 	image field -->
+
+						
+						<h5>Image</h5>
+								<div class="inputBox">
+									<div class="inputText">Image</div>
+									<input type="file" name="imagee" class="input"  >
+								</div>
+						
+
+								<input type="submit" name="" class="button" value="SUBMIT">
+						
+						
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Ending of the form -->
+	</section>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	 <script type="text/javascript">
+	 	$(".input").focus(function() {
+	 		$(this).parent().addClass("focus");
+	 		console.log("hello from focus")
+	 	})
+	 </script>
+	 
+	 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	  <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+	 
+
+  </body>
+</html>

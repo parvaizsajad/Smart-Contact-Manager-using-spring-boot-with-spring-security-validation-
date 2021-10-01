@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+
+<title>hello from home</title>
+</head>
+<body>
+	<section>
+
+		<!-- 	Starting of the form -->
+
+		<div class="card col-md-8 offset-md-2">
+			<div class="card-body">
+				<div class="formBox">
+					<form th:action="@{/user/process-update}" method="post"
+						enctype="multipart/form-data" th:object="${contact}">
+						<div class="row">
+							<div class="col-sm-6 offset-md-3">
+								<h1 class="text-blue">Contact Form</h1>
+								
+							</div>
+						</div>
+
+						<div class="inputBox">
+							<div class="inputText"></div>
+							<input type="text" name="id" th:value="${contact.id}"
+							hidden="true"
+								th:classappend="${#fields.hasErrors('id') ? 'is-invalid' :''} "
+								class="input" placeholder="id">
+							<div th:each="e : ${#fields.errors('id')}" th:text="${e}"
+								class="invalid-feedback"></div>
+						</div>
+
+
+				
+					
+								<div class="inputBox ">
+									<div class="inputText"></div>
+									<input type="text" name="name"
+										th:classappend="${#fields.hasErrors('name') ? 'is-invalid' :''} "
+										th:value="${contact.name}" class="input" placeholder="Name">
+									<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+										class="invalid-feedback"></div>
+								</div>
+
+							
+									<div class="inputBox">
+										<div class="inputText"></div>
+										<input type="text" name="nick_name" class="input"
+											th:value="${contact.nick_name}" placeholder="Nick Name">
+									</div>
+						
+
+					
+						
+									<div class="inputBox">
+										<div class="inputText"></div>
+										<input type="email" name="email" th:value="${contact.email}"
+											th:classappend="${#fields.hasErrors('email') ? 'is-invalid' :''} "
+											class="input" placeholder="Email">
+										<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+											class="invalid-feedback"></div>
+									</div>
+
+							
+										<div class="inputBox">
+											<div class="inputText"></div>
+											<input type="text" name="phone" th:value="${contact.phone}"
+												th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' :''} "
+												class="input" placeholder="Phone">
+											<div th:each="e : ${#fields.errors('phone')}" th:text="${e}"
+												class="invalid-feedback"></div>
+										</div>
+										
+											<div class="inputBox">
+												<div class="inputText"></div>
+												<input type="text" name="work" th:value="${contact.work}"
+													class="input" placeholder="Work">
+											</div>
+										
+
+								
+
+							
+										
+											<div class="inputBox">
+												<div class="inputText"></div>
+												<textarea name="description"
+													th:text="${contact.description}" class="input"
+													placeholder="Description" rows="10"></textarea>
+											</div>
+										
+							
+
+									<!-- 	image field -->
+
+				
+										<img th:src="@{'/img/'+${contact.image}}" alt=""
+											class="ImageP" />
+										<h5>Image</h5>
+										<div class="inputBox">
+											<div class="inputText"></div>
+											<input type="file" name="imagee" class="input">
+										</div>
+								
+
+									<div class="row">
+										<div class="col-sm-12 mb-4">
+											<input type="submit" name="" class="button" value="SUBMIT">
+										</div>
+									</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Ending of the form -->
+
+	</section>
+
+
+</body>
+</html>
