@@ -8,7 +8,42 @@ const toggleSidebar = () =>{
 		$(".sidebar").css("display","block");
 		$(".content").css("margin-left","20%")
 	}
+}
+const search = () =>{
+
+		let querry=$("#search-input").val();
+
+		if(querry==""){
+			
+			$(".search-result").hide();
+		}else{
+			let url=`http://localhost:8080/search/${querry}`;
+		
+
+			fetch(url)
+			.then((response)=>{
+				return response.json();
+			})
+			.then((data)=>{
+				console.log(data)
+
+				let text=`<div class='list-group'>`
+				data.forEach((contact) => {
+					text+=`<a href='/user/${contact.id}/show-contact' class='list-group-item list-group-item-action'> ${contact.name} </a>`
+				});
+
+
+
+				text+=`</div>`; 
+				$(".search-result").html(text);
+				$(".search-result").show();
+			});
+console.log(querry);
+
+
+		}
+	};
 	
-};
+
 
 

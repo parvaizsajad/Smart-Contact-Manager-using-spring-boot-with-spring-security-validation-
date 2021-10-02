@@ -7,6 +7,22 @@
   </head>
   <body>
    <section>
+   
+   
+   <!-- Search text -->
+   <div class="text-center">
+   <div class="search-container my-4 col-md-10 ">
+   
+<input onkeyup="search()" type="text" id="search-input" placeholder="Enter the search name" class="form-control mx-5"/>
+
+<div class="search-result">
+<!-- result goes here -->
+<h1>this is result</h1>
+
+</div>
+</div>
+   </div>
+
 <div  th:if="${session.message}"
 								 th:classappend="${session.message.type}"
 								  class="alert alert-primary text-center"
@@ -30,7 +46,7 @@
     <tr th:each="c: ${contact}">
       <th scope="row" th:text="${c.id}">>1</th>
       <td>
-        <img th:src="@{'/img/'+${c.image}}" alt=""  class="ImageP"/>
+        <img  th:src="@{'/img/'+${c.image}}" alt=""  class="ImageP"/>
               <span th:text="${c.name}">Otto</span>
       </td>
  

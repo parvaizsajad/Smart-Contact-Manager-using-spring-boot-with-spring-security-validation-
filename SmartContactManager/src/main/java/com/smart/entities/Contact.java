@@ -10,6 +10,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Contact {
@@ -36,6 +38,7 @@ public class Contact {
 	@NotBlank(message = "phone field is requied")
 	private String phone;
 @ManyToOne
+@JsonIgnore
 	private User user;
 	
 	public User getUser() {

@@ -148,3 +148,17 @@ textarea{
 	border-radius: 50%;
 	
 }
+
+/* css for search */
+.search-container{
+	position: relative;
+}
+.search-result{
+	position: absolute;
+	background: white;
+	z-index: 999999999;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid grey;
+	display: none;
+}
