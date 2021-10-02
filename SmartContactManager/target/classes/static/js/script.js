@@ -9,6 +9,8 @@ const toggleSidebar = () =>{
 		$(".content").css("margin-left","20%")
 	}
 }
+
+// function for the search contact
 const search = () =>{
 
 		let querry=$("#search-input").val();
