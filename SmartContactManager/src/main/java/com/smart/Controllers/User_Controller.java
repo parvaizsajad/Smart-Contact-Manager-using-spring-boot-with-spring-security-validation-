@@ -280,7 +280,7 @@ public String PaymentHandler(@RequestBody Map<String, Object> data,Principal pin
 	System.out.println("this is a payment field");
 	System.out.println(data);
 	int amount = Integer.parseInt(data.get("amount").toString());
-	var razorpayClient=new RazorpayClient("rzp_test_QxNOgAQ8FjC42V","KjSysODugahoa1EWeRGlsOdT");
+	var razorpayClient=new RazorpayClient(" your id","secret key");
 
 	JSONObject options = new JSONObject();
 	options.put("amount", amount*100);
