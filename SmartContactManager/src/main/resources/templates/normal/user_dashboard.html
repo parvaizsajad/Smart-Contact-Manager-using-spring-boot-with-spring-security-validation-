@@ -1,33 +1,45 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
   <head>
 
     <title >hello from home</title>
-  </head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  </head>
   <body>
    <section>
    <div class="card col-md-8 offset-md-2">
    <div class="card-body">
    <div class="container text-center">
-   <img th:src="@{/img/default.png}" alt="" style="width: 200px;height: 300px;border-radius: 50%;"/>
-   <h1>Welcome:   </h1>
-	<h1 th:text="${user.getName()}"></h1>
+   <img th:src="@{/img/default.png}" alt="" style="width: 200px;height: 250px;border-radius: 50%;"/>
+   <h4>Welcome:   </h4>
+	<h4 th:text="${user.getName()}"></h4>
 	
-	<h1>Start Adding your contacts</h1>
+	<h4>Start Adding your contacts</h4>
 <div class="d-grid gap-2">
   <a 
   th:href="@{/user/add-contact}" class="btn btn-primary" type="button">Add Contacts</a>
+  <hr style="height: 20px;color: aqua;" />
  
-   
-   
-   
-   </div>
-   </div>
+<input type="text"  id="pay" class="form-control ">
+     <a 
+   class="btn btn-warning mb-4" onclick="paymentStart()" type="button">Donate Us</a>
    
    </div>
-	
-	
+   </div>
+   
+   </div>
+	</div>
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	 <script type="text/javascript">
+	 	$(document).ready(()=>{
+
+	 	 	$('.item').removeClass("active")
+	 	 		 	$('#dashboard').addClass("active")
+	 	})
+	 	
+	 </script>
 	</section>
 
 

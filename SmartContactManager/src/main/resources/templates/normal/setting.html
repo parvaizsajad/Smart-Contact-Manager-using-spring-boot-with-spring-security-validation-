@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+  <head>
+
+    <title >hello from home</title>
+  </head>
+  <body>
+   <section>
+
+
+<div class="container text center">
+<div class="col-md-12">
+<div class="card">
+<div class="card-body">
+<h1 class="text-center">Settings</h1>
+<div  th:if="${session.message}"
+								 th:classappend="${session.message.type}"
+								  class="alert alert-primary text-center"
+								   role="alert">
+ 							 <p th:text="${session.message.content}">
+								<p th:text="${#session.removeAttribute('message')}"></p>
+								</div>
+<form th:action="@{/user/change-password}" method="post">
+<input type="text" class="form-control mt-2" name="old-password" placeholder="Enter old password" />
+
+<input type="text" class="form-control mt-2" name="new-password" placeholder="Enter new password" />
+
+<input type="text" class="form-control mt-2" name="rnew-password" placeholder="Re-Enter new password" />
+<div class="container text-center mt-2">
+<button type="Submit" class="btn btn-success">Submit</button>
+<button type="reset"class="btn btn-danger" >Reset</button>
+</div>
+</form>
+</div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+ <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	 <script type="text/javascript">
+	 	$(document).ready(()=>{
+
+	 	 	$('.item').removeClass("active")
+	 	 		 	$('#setting').addClass("active")
+	 	})
+	 	
+	 </script>
+	
+	</section>
+
+
+  </body>
+</html>

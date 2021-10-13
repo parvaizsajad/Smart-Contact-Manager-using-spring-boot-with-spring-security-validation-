@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smart.entities.User;
 import com.smart.helper.Message;
+import com.smart.otp.EmailService;
+import com.smart.otp.RandomNum;
 import com.smart.userRepository.UserRepository;
 
 @Controller
 public class CommonController {
+	String otpRandom;
+	@Autowired
+	private EmailService emailService;
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -97,4 +103,72 @@ public String Signin(Model m) {
 	m.addAttribute("title","LOGIN :Smart-Contact-manager");
 	return "signin";
 }
+	@RequestMapping("/forgot")
+	public String ForgotController(Model m) {
+		m.addAttribute("title","Forgot Password :Smart-Contact-manager");
+		
+		
+	 
+	    
+		
+	    return "forgotPass";
+	}
+	
+	@PostMapping("/passwordHandler")
+	public String passwordHandler(@Param("email") String email ,Model m) {
+		m.addAttribute("title","Forgot Password :Smart-Contact-manager");
+		System.out.println(email);
+		String random = RandomNum.getRandomNumberString();
+		otpRandom=random;
+		emailService.sendmail("mirpaten@gmail.com", "Forget-PassWord", "Hi This is your OTP "+random, email);
+		m.addAttribute("email", email);
+		
+		
+	 
+	    
+		
+	    return "otphandler";
+	}
+	
+
+	@PostMapping("/otpmsg")
+	public String otpHandler(@Param("otp") String otp ,@Param("email") String email,Model m) {
+		m.addAttribute("title","OTP  :Smart-Contact-manager");
+		System.out.println(otp);
+		System.out.println("this is working");
+		if(otp.equals(otpRandom)) {
+			m.addAttribute("email", email);
+			
+			return "changePassword";	
+		}
+
+		
+		
+	 
+	    
+		
+	    return "otphandler";
+		
+	}
+	
+	@PostMapping("/passwordChanged")
+	public String passChangedHandler(@Param("pass1") String pass1 , @Param("pass2") String pass2 ,@Param("email") String email, Model m) {
+		m.addAttribute("title","OTP  :Smart-Contact-manager");
+		
+		
+	    System.out.println(pass1+pass2);
+	    if(pass1.equals(pass2)) {
+	    	User userByUserName = this.userRepository.getUserByUserName(email);
+	    	String encode = this.bCryptPasswordEncoder.encode(pass2);
+	    	userByUserName.setPassword(encode);
+	    	this.userRepository.save(userByUserName);
+	    	
+	    	
+	    }
+		
+	    return "signin";
+		
+	}
+	
+	
 }
